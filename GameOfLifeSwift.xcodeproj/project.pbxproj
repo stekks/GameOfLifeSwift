@@ -14,6 +14,7 @@
 		188624AC19F069FC00D30F1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188624AB19F069FC00D30F1A /* Images.xcassets */; };
 		188624AF19F069FC00D30F1A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188624AD19F069FC00D30F1A /* LaunchScreen.xib */; };
 		188624BB19F069FD00D30F1A /* GameOfLifeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188624BA19F069FD00D30F1A /* GameOfLifeSwiftTests.swift */; };
+		188624C519F06B8300D30F1A /* LifeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188624C419F06B8300D30F1A /* LifeLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		188624B419F069FC00D30F1A /* GameOfLifeSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameOfLifeSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		188624B919F069FD00D30F1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188624BA19F069FD00D30F1A /* GameOfLifeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfLifeSwiftTests.swift; sourceTree = "<group>"; };
+		188624C419F06B8300D30F1A /* LifeLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				188624A219F069FC00D30F1A /* AppDelegate.swift */,
 				188624A419F069FC00D30F1A /* FirstViewController.swift */,
 				188624A619F069FC00D30F1A /* SecondViewController.swift */,
+				188624C419F06B8300D30F1A /* LifeLogic.swift */,
 				188624A819F069FC00D30F1A /* Main.storyboard */,
 				188624AB19F069FC00D30F1A /* Images.xcassets */,
 				188624AD19F069FC00D30F1A /* LaunchScreen.xib */,
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188624C519F06B8300D30F1A /* LifeLogic.swift in Sources */,
 				188624A719F069FC00D30F1A /* SecondViewController.swift in Sources */,
 				188624A319F069FC00D30F1A /* AppDelegate.swift in Sources */,
 				188624A519F069FC00D30F1A /* FirstViewController.swift in Sources */,
@@ -411,6 +415,7 @@
 				188624C019F069FD00D30F1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		188624C119F069FD00D30F1A /* Build configuration list for PBXNativeTarget "GameOfLifeSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +424,7 @@
 				188624C319F069FD00D30F1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

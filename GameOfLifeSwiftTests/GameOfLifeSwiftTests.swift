@@ -8,6 +8,7 @@
 
 import UIKit
 import XCTest
+import GameOfLifeSwift
 
 class GameOfLifeSwiftTests: XCTestCase {
     
@@ -21,16 +22,59 @@ class GameOfLifeSwiftTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testBlinkerFirstGeneration() {
+        // arrange
+        var game: LifeLogic = LifeLogic(size: 5)
+        
+        // blinker stage 1
+        game.grid = [
+            [false, false, false, false, false],
+            [false, false, true,  false, false],
+            [false, false, true,  false, false],
+            [false, false, true,  false, false],
+            [false, false, false, false, false],
+        ]
+        
+        // blinker stage 2
+        var blinkerStage2 = [
+            [false, false, false, false, false],
+            [false, false, false, false, false],
+            [false, true,  true,  true,  false],
+            [false, false, false, false, false],
+            [false, false, false, false, false],
+        ]
+        // act
+        game.calculateNextGeneration()
+        // assert
+        XCTAssert(game.grid == blinkerStage2, "Blinker first generation works")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    func testBlinkerTwoGenerations() {
+        // arrange
+        var game: LifeLogic = LifeLogic(size: 5)
+        
+        // blinker stage 1
+        game.grid = [
+            [false, false, false, false, false],
+            [false, false, true,  false, false],
+            [false, false, true,  false, false],
+            [false, false, true,  false, false],
+            [false, false, false, false, false],
+        ]
+        
+        // blinker stage 2
+        var blinkerStage2 = [
+            [false, false, false, false, false],
+            [false, false, true,  false, false],
+            [false, false, true,  false, false],
+            [false, false, true,  false, false],
+            [false, false, false, false, false],
+        ]
+        // act
+        game.calculateNextGeneration()
+        game.calculateNextGeneration()
+        // assert
+        XCTAssert(game.grid == blinkerStage2, "Blinker second generation works")
     }
     
 }
