@@ -15,6 +15,8 @@
 		188624AF19F069FC00D30F1A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188624AD19F069FC00D30F1A /* LaunchScreen.xib */; };
 		188624BB19F069FD00D30F1A /* GameOfLifeSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188624BA19F069FD00D30F1A /* GameOfLifeSwiftTests.swift */; };
 		188624C519F06B8300D30F1A /* LifeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188624C419F06B8300D30F1A /* LifeLogic.swift */; };
+		18B4317B19F51E6E0051FD55 /* cell_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B4317919F51E6E0051FD55 /* cell_black.png */; };
+		18B4317C19F51E6E0051FD55 /* cell_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 18B4317A19F51E6E0051FD55 /* cell_white.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		188624B919F069FD00D30F1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		188624BA19F069FD00D30F1A /* GameOfLifeSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfLifeSwiftTests.swift; sourceTree = "<group>"; };
 		188624C419F06B8300D30F1A /* LifeLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeLogic.swift; sourceTree = "<group>"; };
+		18B4317919F51E6E0051FD55 /* cell_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cell_black.png; path = ../../../Downloads/cell_black.png; sourceTree = "<group>"; };
+		18B4317A19F51E6E0051FD55 /* cell_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cell_white.png; path = ../../../Downloads/cell_white.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 		188624A019F069FC00D30F1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18B4317919F51E6E0051FD55 /* cell_black.png */,
+				18B4317A19F51E6E0051FD55 /* cell_white.png */,
 				188624A119F069FC00D30F1A /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -199,6 +205,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				188624AA19F069FC00D30F1A /* Main.storyboard in Resources */,
+				18B4317B19F51E6E0051FD55 /* cell_black.png in Resources */,
+				18B4317C19F51E6E0051FD55 /* cell_white.png in Resources */,
 				188624AF19F069FC00D30F1A /* LaunchScreen.xib in Resources */,
 				188624AC19F069FC00D30F1A /* Images.xcassets in Resources */,
 			);

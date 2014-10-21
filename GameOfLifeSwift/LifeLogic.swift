@@ -11,6 +11,10 @@ import Foundation
 public class LifeLogic {
     public var grid : [[Bool]]
     var size : Int
+    let neighbourOffsets =
+        [(-1,-1),(0,-1),(1,-1),
+        (-1, 0) ,      (1, 0),
+        (-1, 1),(0, 1),(1, 1)]
     
     public init(size: Int)
     {
@@ -25,13 +29,13 @@ public class LifeLogic {
         var newGrid = [[Bool]](count: size, repeatedValue: [Bool](count: size, repeatedValue: false))
         
         // apply rules to new grid and put results in new grid
-        for i in 0...size-1 {
-            for j in 0...size-1 {
+        for i in 0..<size {
+            for j in 0..<size {
                 switch countNeighbours(i, y: j) {
                     case 0...1 : newGrid[i][j] = false
                     case 2     : newGrid[i][j] = grid[i][j]
                     case 3     : newGrid[i][j] = true
-                    default:     newGrid[i][j] = false
+                    default    : newGrid[i][j] = false
                 }
             }
         }
@@ -45,16 +49,15 @@ public class LifeLogic {
     
     func countNeighbours(x: Int, y: Int) -> Int {
         var count = 0
-        
-        for i in x-1...x+1 {
-            if i >= 0 && i <= size-1 {
-                for j in y-1...y+1 {
-                    if j >= 0 && j <= size-1 && !( x == i && y == j ) {
-                        if grid[i][j] == true {
-                            count++
-                        }
-                    }
-                }
+        var xPos = 0
+        var yPos = 0
+
+        for (xOffset,yOffset) in neighbourOffsets {
+            xPos = x + xOffset
+            yPos = y + yOffset
+            var inBounds : Bool = (xPos >= 0 && xPos < size) && (yPos >= 0 && yPos < size)
+            if inBounds && grid[xPos][yPos] {
+                count++
             }
         }
         
