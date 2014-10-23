@@ -8,7 +8,7 @@
 
 import UIKit
 
-var GridSize: UInt8 = 12
+var GridSize = 12
 var IntervalTime: Float = 1000
 
 class FirstViewController: UIViewController {
@@ -32,7 +32,7 @@ class FirstViewController: UIViewController {
     
     @IBAction func oneClicker(sender: UIStepper) {
         self.gridSize.text = Int(sender.value).description
-        GridSize = UInt8(sender.value)
+        GridSize = Int(sender.value)
     }
 
     @IBAction func timeSliderChanged(sender: UISlider) {

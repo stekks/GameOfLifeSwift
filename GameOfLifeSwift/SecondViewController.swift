@@ -8,52 +8,53 @@
 
 import UIKit
 
-class SecondViewController: UIViewController, UIGestureRecognizerDelegate {
+class SecondViewController: UIViewController {
 
     enum GameState {
         case Started, Stopped
     }
     
-    let xOffset: UInt8 = 10
-    let yOffset:UInt8 = 100
-    let gridElementSize: UInt8 = 25
-    let margin:UInt8 = 5
+    let xOffset = 10
+    let yOffset = 100
+    let gridElementSize = 25
+    let margin = 5
     
     var gameState: GameState = .Stopped
     var timer: NSTimer!
+    var gameOfLife: LifeLogic!
+    var buttonGrid = [[UIButton?]](count: 20, repeatedValue: [UIButton?](count: 20, repeatedValue: nil))
     
     @IBOutlet weak var startStopButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        // init vars
+
+        self.gameOfLife = LifeLogic(size: GridSize)
         self.gameState = .Stopped
-        
-        // create grid of views(?) depending on size of main view
         createGrid()
-        // change grid in LifeLogic according to the grid on the screen
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func startStopButtonClicked(sender: UIButton) {
         if (self.gameState == .Stopped) {
             self.gameState = .Started
+            
             // start timer
             self.timer = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(IntervalTime/1000), target: self, selector: Selector("updateGrid"), userInfo: nil, repeats: true)
+            
             // update button text
             self.startStopButton.setTitle("Start", forState: UIControlState.Normal)
         }
         else {
             self.gameState = .Stopped
+            
             // stop timer
             self.timer.invalidate()
             self.timer = nil
+            
             // update button text
             self.startStopButton.setTitle("Stop", forState: UIControlState.Normal)
         }
@@ -61,31 +62,26 @@ class SecondViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func createGrid()
     {
-        var imageTag = 0
+        var imageTag:Int = 0
         
-        GridSize = 6 // temp fix for crash on 7th interation of for loop below
-        
-        // fill grid with (scaled!) UIImageViews of 'dead' cells.
+        // draw a grid of buttons
         for x in 0..<GridSize {
             for y in 0..<GridSize{
-                var imageView = UIImageView(
+                var imageButton = UIButton(
                     frame: CGRectMake(
                         CGFloat(x * gridElementSize + xOffset),
                         CGFloat(y * gridElementSize + yOffset),
                         CGFloat(gridElementSize),
                         CGFloat(gridElementSize))
                 )
-                println("\(x) \(y)")
-                imageView.contentMode = .ScaleAspectFit;
-                var image = UIImage(named: "cell_white.png")
-                imageView.image = image
-                self.view.addSubview(imageView)   // <- crashes on 7th iteration.. why?
-                imageView.tag = imageTag
-                
-                // add click event on image view
-                let recognizer = UITapGestureRecognizer(target: self, action:Selector("handleTap:"))
-                recognizer.delegate = self
-                imageView.addGestureRecognizer(recognizer)
+
+                imageButton.setImage(UIImage(named: "cell_white.png"), forState: UIControlState.Normal)
+                imageButton.setImage(UIImage(named: "cell_black.png"), forState: UIControlState.Highlighted)
+                imageButton.imageView?.contentMode = .ScaleAspectFit;
+                imageButton.tag = imageTag++
+                imageButton.addTarget(self, action: "cellButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
+                self.view.addSubview(imageButton)
+                self.buttonGrid[x][y] = imageButton
             }
         }
     }
@@ -93,14 +89,29 @@ class SecondViewController: UIViewController, UIGestureRecognizerDelegate {
     // called by timer
     func updateGrid()
     {
-        // LifeLogic.calculateNextGeneration
-        println("timerinterval fired")        
+        gameOfLife.calculateNextGeneration()
+     
+        for x in 0..<GridSize {
+            for y in 0..<GridSize{
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.buttonGrid[x][y]!.highlighted = self.gameOfLife.grid[x][y]
+                })
+            }
+        }
     }
     
-    func handleTap(recognizer: UITapGestureRecognizer) {
-        // check if a/which cell is clicked
-        println(recognizer.view!.tag)
+    @IBAction func cellButtonClicked(sender: UIButton) {
+        if gameState == .Stopped {
+            // calculate x/y coordinates
+            let x = sender.tag / GridSize
+            var y = sender.tag % GridSize
+            
+            // update visual and game grid
+            dispatch_async(dispatch_get_main_queue(), {
+                sender.highlighted != sender.highlighted
+                self.gameOfLife.grid[x][y] = sender.highlighted
+            })
+        }
     }
-
 }
 
