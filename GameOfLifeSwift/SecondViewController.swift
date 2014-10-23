@@ -76,7 +76,6 @@ class SecondViewController: UIViewController {
                 )
 
                 imageButton.setImage(UIImage(named: "cell_white.png"), forState: UIControlState.Normal)
-                imageButton.setImage(UIImage(named: "cell_black.png"), forState: UIControlState.Highlighted)
                 imageButton.imageView?.contentMode = .ScaleAspectFit;
                 imageButton.tag = imageTag++
                 imageButton.addTarget(self, action: "cellButtonClicked:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -93,9 +92,11 @@ class SecondViewController: UIViewController {
      
         for x in 0..<GridSize {
             for y in 0..<GridSize{
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.buttonGrid[x][y]!.highlighted = self.gameOfLife.grid[x][y]
-                })
+                if self.gameOfLife.grid[x][y] {
+                    self.buttonGrid[x][y]!.setImage(UIImage(named: "cell_black.png"), forState: UIControlState.Normal)
+                } else {
+                    self.buttonGrid[x][y]!.setImage(UIImage(named: "cell_white.png"), forState: UIControlState.Normal)
+                }
             }
         }
     }
@@ -107,10 +108,14 @@ class SecondViewController: UIViewController {
             var y = sender.tag % GridSize
             
             // update visual and game grid
-            dispatch_async(dispatch_get_main_queue(), {
-                sender.highlighted != sender.highlighted
-                self.gameOfLife.grid[x][y] = sender.highlighted
-            })
+            if sender.currentImage! == UIImage(named: "cell_black.png") {
+                sender.setImage(UIImage(named: "cell_white.png"), forState: UIControlState.Normal)
+                self.gameOfLife.grid[x][y] = false
+            } else
+            {
+                sender.setImage(UIImage(named: "cell_black.png"), forState: UIControlState.Normal)
+                self.gameOfLife.grid[x][y] = true
+            }
         }
     }
 }
