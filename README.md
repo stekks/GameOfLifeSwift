@@ -1,6 +1,6 @@
 GameOfLifeSwift
 ===============
 
-Simple Game of Life implementation for Swift. For now only Logic works but could/should be improved
+Simple Game of Life implementation for Swift.
 
-GUI has yet to be implemented
+Crude GUI implemented. Could (and should) be improved.
